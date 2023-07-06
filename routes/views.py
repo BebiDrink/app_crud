@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify, request, url_for, redirect
+from flask import Blueprint, render_template, jsonify, request, url_for, redirect, flash
 from utils.db import db
 from models.tables import Producto, producto_schema, productos_schema
 
@@ -67,7 +67,9 @@ def delete_producto(id):
     db.session.delete(producto)
 
     # Guarda los cambios en la base de datos
-    db.session.commit()  
+    db.session.commit()
+
+    flash('Producto borrado exitosamente', 'error')  
 
     # Redirige a la página principal y actualiza la lista de productos mostrados
     return redirect(url_for("approutes.home"))
@@ -90,6 +92,8 @@ def create_producto():
     nuevo_producto = Producto(nombre=nombre, precio=precio, stock=stock, imagen=imagen)
     db.session.add(nuevo_producto)
     db.session.commit()
+
+    flash('Producto guardado exitosamente', 'success')
 
     return redirect(url_for("approutes.home"))
 

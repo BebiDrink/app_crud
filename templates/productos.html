@@ -34,22 +34,22 @@
         <h1 class="text-center bdgen">
           ADMINISTRADOR DE PRODUCTOS
         </h1>
-        <!-- Botón para crear un nuevo producto -->
+
+        <section class="container">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                  <i class="fa-solid fa-check fa-shake" style="color: #268000;"></i>
+                  <strong> {{ message }} </strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+          {% endif %}
+        {% endwith %}
+        </section>
+
         <section>
-
-          <!-- <article class="text-center mb-3 sticky-top">
-            <button
-              type="button"
-              class="btn bdgen btn-lg shadow border border-light text-white"
-              style="width: 99%"
-              data-bs-toggle="modal"
-              data-bs-target="#myModal"
-            >
-              <i class="fa-regular fa-plus" style="color: #ffffff"></i> Agregar
-              producto
-            </button>
-          </article> -->
-
           <!-- Renderización de los productos con Jinja -->
           <div class="row justify-content-center align-items-center">
 
@@ -61,7 +61,7 @@
               href="#addProductForm" role="button" aria-expanded="true" 
               aria-controls="addProductForm" style="width: 90%;" action="/add">
               Agregar producto 
-              <i class="fa-solid fa-angles-down" style="color: #ffffff97;"></i>
+              <i class="fa-solid fa-angles-down fa-bounce" style="color: #fafcffb0;"></i>
               </h2>
 
               <form 
