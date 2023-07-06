@@ -1,0 +1,5 @@
+
+
+function editar() {}
+
+function borrar() {}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>INICIO</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script
+      src="https://kit.fontawesome.com/cac8e89f4d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header id="header">
+      <!-- place navbar here -->
+    </header>
+    <main>
+      <!-- Código HTML anterior omitido por brevedad -->
+
+      <div id="" class="">
+        <h1 class="text-center bdgen">
+          ADMINISTRADOR DE PRODUCTOS
+        </h1>
+        <!-- Botón para crear un nuevo producto -->
+        <section>
+
+          <!-- <article class="text-center mb-3 sticky-top">
+            <button
+              type="button"
+              class="btn bdgen btn-lg shadow border border-light text-white"
+              style="width: 99%"
+              data-bs-toggle="modal"
+              data-bs-target="#myModal"
+            >
+              <i class="fa-regular fa-plus" style="color: #ffffff"></i> Agregar
+              producto
+            </button>
+          </article> -->
+
+          <!-- Renderización de los productos con Jinja -->
+          <div class="row justify-content-center align-items-center">
+
+            <article class="col-sm-10 col-md-4 align-self-start">
+
+              <!-- TITULO FORMULARIO AGREGAR PRODUCTO -->
+              <h2 
+              class="text-center m-3 btn btn-dark" data-bs-toggle="collapse" 
+              href="#addProductForm" role="button" aria-expanded="true" 
+              aria-controls="addProductForm" style="width: 90%;" action="/add">
+              Agregar producto 
+              <i class="fa-solid fa-angles-down" style="color: #ffffff97;"></i>
+              </h2>
+
+              <form 
+              id="addProductForm" action="/add" method="post" 
+              class="card container shadow p-4 bg-secondary rounded-3 collapse show" 
+              style="--bs-bg-opacity: .4;">
+
+                <!-- NOMBRE -->
+                <input type="hidden" id="productoId" />
+                <div class="form-group">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto" required />
+                </div>
+
+                <!-- PRECIO -->
+                <div class="form-group">
+                  <label for="precio">Precio</label>
+                  <input type="number" class="form-control" id="precio" name="precio" placeholder="Precio del producto" required />
+                </div>
+
+                <!-- STOCK -->
+                <div class="form-group">
+                  <label for="stock">Stock</label>
+                  <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock del producto" required />
+                </div>
+
+                <!-- IMAGEN -->
+                <div class="form-group mb-3">
+                  <label for="imagen" class="form-label">Imagen</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    id="imagen"
+                    name=imagen
+                    placeholder="URL de la imagen del producto"
+                  />
+
+                </div>
+                <div class=" d-grid gap-2 d-md-block text-center mt-2 card-footer">
+                  <a class="btn btn-outline-danger" href="/login">Salir</a>
+                  <button type="submit" class="btn btn-primary" onclick="grabar()">
+                    Guardar
+                  </button>
+                </div>
+              </form>
+
+            </article>
+
+            <article class="row container text-center col-sm-10 col-md-7 p-3">
+              <h2 class="btn btn-dark" style="width: 100%;">Lista de productos</h2>
+
+              <div class="bg-secondary rounded-3 col-12 pt-2" style="--bs-bg-opacity: .4;" id="productsList">
+
+
+                {% for producto in productos %}
+                <div class="card shadow mb-2 p-1 bg-light" style="--bs-bg-opacity: .6;">
+                  <div class="row g-0">
+
+                    <div class="col-md-4">
+                      <img class="card-img-left rounded-circle" src="https://via.placeholder.com/200/888888/FFFFFF?text=Imagen+Gen%C3%A9rica" style="object-fit: cover">
+                    </div>
+
+                    <div class="col-md-7">
+                      <div class="card-body">
+                        <h6 class="id_product">{{ producto.id }}</h6>
+                        <h5 class="card-title product-title">{{ producto.nombre }}</h5>
+                        <p class="card-text fs-5 text-secondary">Precio: ${{ producto.precio }}</p>
+                      </div>
+                      <div class="d-grid gap-2 d-md-block card-footer">
+                        <button class="btn btn-primary btn-sm shadow-sm" type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                          <i class="fa-solid fa-pencil" style="color: #ffffff"></i> Editar
+                        </button>
+                        <a class="btn btn-danger btn-sm shadow-sm" type="button" href="{{ url_for('approutes.delete_producto', id=producto.id) }}">
+                          <i class="fa-solid fa-trash-can" style="color: #ffffff"></i> Borrar
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1 mt-3">
+                      <p>
+                        <span class="badge bg-dark rounded-0">Stock: {{ producto.stock }}</span>
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+                
+                {% endfor %}
+
+            </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- Modal form para editar un producto -->
+      <div
+        class="modal fade"
+        id="myModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="editarModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editarModalLabel">Editar Producto</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Formulario de edición del producto -->
+              <form id="updateProductForm">
+                <input type="hidden" id="productoId" />
+                 <!-- NOMBRE -->
+                 <input type="hidden" id="productoId" />
+                 <div class="form-group">
+                   <label for="nombre">Nombre</label>
+                   <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto" required />
+                 </div>
+ 
+                 <!-- PRECIO -->
+                 <div class="form-group">
+                   <label for="precio">Precio</label>
+                   <input type="number" class="form-control" id="precio" placeholder="Precio del producto" required />
+                 </div>
+ 
+                 <!-- STOCK -->
+                 <div class="form-group">
+                   <label for="stock">Stock</label>
+                   <input type="number" class="form-control" id="stock" placeholder="Stock del producto" required />
+                 </div>
+ 
+                 <!-- IMAGEN -->
+                 <div class="form-group mb-3">
+                   <label for="imagen" class="form-label">Imagen</label>
+                   <input
+                     type="url"
+                     class="form-control form-control-sm"
+                     id="imagen"
+                     name=imagen
+                     placeholder="URL de la imagen del producto"
+                   />
+ 
+                 </div>
+
+              </form>
+            </div>
+            <div class="modal-footer d-grid gap-2 d-md-block text-center mt-2">
+              <a class="btn btn-outline-danger" data-bs-dismiss="modal" aria-label="Close">Cancelar</a>
+              <button type="submit" class="btn btn-primary">
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Código JavaScript de Vue.js -->
+      
+
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"
+      ></script>
+    </main>
+  </body>
+</html>
