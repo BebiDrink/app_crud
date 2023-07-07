@@ -97,35 +97,11 @@ def create_producto():
 
     return redirect(url_for("approutes.home"))
 
-"""     # Obtiene el nombre del producto del JSON proporcionado
-    nombre = request.json["nombre"] 
-
-    # Obtiene el precio del producto del JSON proporcionado 
-    precio = request.json["precio"] 
-
-    # Obtiene el stock del producto del JSON proporcionado 
-    stock = request.json["stock"]
-
-    # Obtiene la imagen del producto del JSON proporcionado
-    imagen = request.json["imagen"]  
-
-    # Crea un nuevo objeto Producto con los datos proporcionados
-    new_producto = Producto(nombre, precio, stock, imagen)  
-
-    # Agrega el nuevo producto a la sesión de la base de datos
-    db.session.add(new_producto)  
-
-    # Guarda los cambios en la base de datos
-    db.session.commit()  
-
-    # Retorna el JSON del nuevo producto creado
-    return producto_schema.jsonify(new_producto)   """
-
 
 
 # ==================== API ATUALIZAR PRODUCTO ========================
 # Endpoint para actualizar un producto
-@approutes.route("/productos/<id>", methods=["PUT"])
+@approutes.route("/update/<id>", methods=['GET', 'POST'])
 def update_producto(id):
     """
     Endpoint para actualizar un producto existente en la base de datos.
@@ -133,18 +109,11 @@ def update_producto(id):
     Lee los datos proporcionados en formato JSON por el cliente y actualiza el registro del producto con el ID especificado.
     Retorna un JSON con el producto actualizado.
     """
-
-    # Obtiene el producto existente con el ID especificado
-    producto = Producto.query.get(id)  
-
-    # Actualiza los atributos del producto con los datos proporcionados en el JSON
-    producto.nombre = request.json["nombre"]
-    producto.precio = request.json["precio"]
-    producto.stock = request.json["stock"]
-    producto.imagen = request.json["imagen"]
-
-    # Guarda los cambios en la base de datos
-    db.session.commit() 
-
-    # Retorna el JSON del producto actualizado
-    return producto_schema.jsonify(producto)
+    if request.method == 'POST':
+        return redirect(url_for("approutes.home"))
+    else:
+        # Obtiene el producto existente con el ID especificado
+        producto = Producto.query.get(id)
+        print(producto)
+        return render_template("update.html", productos=producto)
+    
