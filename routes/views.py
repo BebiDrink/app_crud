@@ -69,7 +69,7 @@ def delete_producto(id):
     # Guarda los cambios en la base de datos
     db.session.commit()
 
-    flash('Producto borrado exitosamente', 'error')  
+    flash(f'El producto "{producto.nombre}" fue borrado', 'success')  
 
     # Redirige a la página principal y actualiza la lista de productos mostrados
     return redirect(url_for("approutes.home"))
@@ -93,7 +93,7 @@ def create_producto():
     db.session.add(nuevo_producto)
     db.session.commit()
 
-    flash('Producto guardado exitosamente', 'success')
+    flash('¡Producto creado con éxito!', 'success')
 
     return redirect(url_for("approutes.home"))
 
@@ -110,6 +110,7 @@ def update_producto(id):
     Retorna un JSON con el producto actualizado.
     """
     if request.method == 'POST':
+        flash('¡El producto ha sido editado!', 'success')
         return redirect(url_for("approutes.home"))
     else:
         # Obtiene el producto existente con el ID especificado

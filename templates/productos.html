@@ -32,15 +32,14 @@
     <header id="header">
       <!-- place navbar here -->
     </header>
-    <main>
+    <main class="">
       <!-- Código HTML anterior omitido por brevedad -->
 
-      <div id="" class="">
-        <section class="container">
+        <section class="container mt-2">
           {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
                   <i class="fa-solid fa-check fa-shake" style="color: #268000;"></i>
                   <strong> {{ message }} </strong>
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
