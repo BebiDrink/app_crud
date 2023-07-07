@@ -7,7 +7,6 @@ from config import Config
 
 
 
-
 # Instancia de flask
 app = Flask(__name__)
 

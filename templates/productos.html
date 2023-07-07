@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <title>INICIO</title>
     <meta charset="utf-8" />
@@ -25,30 +25,30 @@
 
   <body>
 
+    <!--  NAVBAR -->
     <div>
       {% include('_navbar.html') %}
     </div>
 
+    <!-- HEADER: MENSAJES FLASH -->
     <header id="header">
-      <!-- place navbar here -->
+      <section class="container mt-2">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-check fa-shake" style="color: #268000;"></i>
+                <strong> {{ message }} </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endfor %}
+        {% endif %}
+      {% endwith %}
+      </section>
     </header>
+
+    <!-- MAIN: LISTA DE PRODUCTOS Y FORM DE NUEVO PRODUCTO -->
     <main class="">
-      <!-- Código HTML anterior omitido por brevedad -->
-
-        <section class="container mt-2">
-          {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <i class="fa-solid fa-check fa-shake" style="color: #268000;"></i>
-                  <strong> {{ message }} </strong>
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                {% endfor %}
-          {% endif %}
-        {% endwith %}
-        </section>
-
         <section>
           <!-- Renderización de los productos con Jinja -->
           <div class="row justify-content-center align-items-center">
@@ -57,9 +57,9 @@
 
               <!-- TITULO FORMULARIO AGREGAR PRODUCTO -->
               <h2 
-              class="text-center m-3 btn btn-dark" data-bs-toggle="collapse" 
+              class="text-center m-3 btn py-3 btn-secondary rounded-0 fs-4 shadow" data-bs-toggle="collapse" 
               href="#addProductForm" role="button" aria-expanded="true" 
-              aria-controls="addProductForm" style="width: 90%;" action="/add">
+              aria-controls="addProductForm" style="width: 95%;" action="/add">
               Agregar producto 
               <i class="fa-solid fa-angles-down fa-bounce" style="color: #fafcffb0;"></i>
               </h2>
@@ -101,8 +101,9 @@
 
                 </div>
                 <div class=" d-grid gap-2 d-md-block text-center mt-2 card-footer">
-                  <button type="submit" class="btn btn-primary" onclick="grabar()">
-                    Guardar
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa-regular fa-floppy-disk" style="color: #ffffff;"></i>
+                     Guardar
                   </button>
                 </div>
               </form>
@@ -110,7 +111,7 @@
             </article>
 
             <article class="row container text-center col-sm-10 col-md-7 p-3">
-              <h2 class="btn btn-dark" style="width: 100%;">Lista de productos</h2>
+              <h2 class="btn py-3 btn-secondary rounded-0 fs-4 shadow" style="width: 100%;">Lista de productos</h2>
 
               <div class="bg-secondary rounded-3 col-12 pt-2" style="--bs-bg-opacity: .4;" id="productsList">
 
@@ -132,18 +133,18 @@
                         <p class="card-text fs-5 text-secondary">Precio: ${{ producto.precio }}</p>
                       </div>
                       <div class="d-grid gap-2 d-md-block card-footer">
-                        <a class="btn btn-primary btn-sm shadow-sm" type="button" href="{{ url_for('approutes.update_producto', id=producto.id) }}">
+                        <a class="btn btn-primary  btn-sm shadow-sm" type="button" href="{{ url_for('approutes.update_producto', id=producto.id) }}">
                           <i class="fa-solid fa-pencil" style="color: #ffffff"></i> Editar
                         </a>
-                        <a class="btn btn-danger btn-sm shadow-sm" type="button" href="{{ url_for('approutes.delete_producto', id=producto.id) }}">
-                          <i class="fa-solid fa-trash-can" style="color: #ffffff"></i> Borrar
+                        <a class="btn btn-outline-danger btn-sm shadow-sm" type="button" href="{{ url_for('approutes.delete_producto', id=producto.id) }}">
+                          <i class="fa-solid fa-trash-can" style="color: #790303"></i> Borrar
                         </a>
                       </div>
                     </div>
 
                     <div class="col-md-1 mt-3">
                       <p>
-                        <span class="badge bg-dark rounded-0">Stock: {{ producto.stock }}</span>
+                        <span class="badge rounded-0 bdgen">Stock: {{ producto.stock }}</span>
                       </p>
                     </div>
 
@@ -157,12 +158,25 @@
           </div>
         </section>
       </div>
-
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"
-      ></script>
     </main>
+
+    <footer class="text-light text-center py-3 mt-5" style="background-color: rgb(38, 12, 61)">
+      <div class="container">
+        <p class="mb-0 small fw-lighter">
+          Made By J. Esparza, G. Rincón.<br>
+          Powered by PythonAnywhere<br>
+          CAC: Trabajo Final Integrador; CRUD<br>
+          2023
+        </p>
+      </div>
+    </footer>
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous">
+    </script>
+
   </body>
 </html>

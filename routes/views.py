@@ -103,18 +103,20 @@ def create_producto():
 # Endpoint para actualizar un producto
 @approutes.route("/update/<id>", methods=['GET', 'POST'])
 def update_producto(id):
-    """
-    Endpoint para actualizar un producto existente en la base de datos.
 
-    Lee los datos proporcionados en formato JSON por el cliente y actualiza el registro del producto con el ID especificado.
-    Retorna un JSON con el producto actualizado.
-    """
+    # Obtiene el producto existente con el ID especificado
+    producto = Producto.query.get(id)
+
     if request.method == 'POST':
+        producto.nombre = request.form['nombre']
+        producto.precio = request.form['precio']
+        producto.stock = request.form['stock']
+        producto.imagen = request.form['imagen']
+        db.session.commit() 
+
         flash('¡El producto ha sido editado!', 'success')
         return redirect(url_for("approutes.home"))
+
     else:
-        # Obtiene el producto existente con el ID especificado
-        producto = Producto.query.get(id)
-        print(producto)
         return render_template("update.html", productos=producto)
     

@@ -18,7 +18,7 @@ body {
 }
 
 .login-title {
-    color: #2d0d3f;
+    color: rgb(38, 12, 61);
 }
 
 .card-title {
@@ -35,14 +35,14 @@ body {
 }
 
 label span {
-    color: #2d0d3f;
+    color: rgb(38, 12, 61);
     font-weight: bolder;
     letter-spacing: 3px;
 }
 
 input {
     font-family: 'Roboto', sans-serif;
-    color:#2d0d3f !important;
+    color:rgb(38, 12, 61);
 }
 
 #password:focus,
@@ -54,13 +54,11 @@ input {
 
 
 .product-title {
-    color: #521b71 ;
+    color: rgb(38, 12, 61) ;
 }
 
 .bdgen {
-    background-color: #320e48;
-    color: rgba(255, 255, 255, 0.638);
-    padding: 10px 0;
+    background-color: rgb(38, 12, 61);
 }
 
 .modal-box {

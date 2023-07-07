@@ -45,6 +45,7 @@
               type="text"
               class="form-control"
               id="nombre"
+              name="nombre"
               placeholder="{{ productos.nombre }}"
               value="{{ productos.nombre }}"
               required
@@ -58,6 +59,7 @@
               type="number"
               class="form-control"
               id="precio"
+              name="precio"
               placeholder="Precio del producto"
               value="{{ productos.precio }}"
               required
@@ -71,6 +73,7 @@
               type="number"
               class="form-control"
               id="stock"
+              name="stock"
               placeholder="Stock del producto"
               value="{{ productos.stock }}"
               required
@@ -91,7 +94,10 @@
           </div>
           <div class="modal-footer d-grid gap-2 d-md-block text-center mt-2">
             <a class="btn btn-outline-danger" href="/">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-regular fa-floppy-disk" style="color: #ffffff;"></i>
+              Guardar
+            </button>
           </div>
         </form>
       </div>
