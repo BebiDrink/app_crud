@@ -1,0 +1,103 @@
+<html lang="es">
+  <head>
+    <style data-merge-styles="true"></style>
+    <style data-merge-styles="true"></style>
+    <style data-merge-styles="true"></style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+
+    <title>{% block title %} Administrador de productos login {% endblock %}</title>
+
+    <script
+      src="https://kit.fontawesome.com/cac8e89f4d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <link rel="icon" href="../static/images/bbdrink.png" type="image/png" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+  </head>
+
+  <body class="container-fluid">
+    <main class="container mt-4">
+      <h2 class="text-center mt-3 login-title">
+        <i class="fa-solid fa-database" style="color: #29093b"></i>
+        ADMINISTRADOR
+      </h2>
+
+      <h5 class="text-center">Base de datos de productos BBDrink</h5>
+
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card container bkg-general">
+            <div class="card-header mt-3">
+              <div class="text-center mt-3">
+                <img
+                  src="../static/images/bbdrink.png"
+                  alt=""
+                  style="width: 150px; border-radius: 100%"
+                />
+              </div>
+              <h4 class="text-center mt-3 mb-3 card-title">Login empleados</h4>
+            </div>
+
+            <form class="card-body login-form" id="login-form" method="post" action="/">
+              <!-- USERNAME -->
+              <div class="form-group card-text mb-3">
+                <i class="fa-solid fa-user" style="color: #260038"></i>
+                <label for="username"><span>Usuario</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="Ingrese su usuario"
+                />
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="form-group">
+                <i class="fa-solid fa-key" style="color: #250038"></i>
+                <label for="password"><span>Contraseña</span></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Ingrese su contraseña"
+                />
+              </div>
+
+              <!-- SUBMIT BUTTON -->
+              <div class="text-center mt-5">
+                <button type="submit" class="btn btn-dark">
+                  Iniciar sesión
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+    
+  </body>
+</html>

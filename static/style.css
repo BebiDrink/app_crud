@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Nunito:wght@200;400;500&family=Roboto:wght@100;500;700&display=swap');
+
+/* 
+font-family: 'Montserrat', sans-serif;
+font-family: 'Nunito', sans-serif;
+font-family: 'Roboto', sans-serif;
+*/
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body {
+    background-color: #ece3c8;
+    transition:  0.5s;
+}
+
+.login-title {
+    color: rgb(38, 12, 61);
+}
+
+.card-title {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card-header {
+    background-color: #212529;
+}
+
+.bkg-general {
+    background-color: rgba(244, 244, 244, 0.486);
+}
+
+label span {
+    color: rgb(38, 12, 61);
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+input {
+    font-family: 'Roboto', sans-serif;
+    color:rgb(38, 12, 61);
+}
+
+#password:focus,
+#username:focus {
+    transition: 0.5s;
+    box-shadow: 0 0 0px 2px #212529a3;
+    border: 1px solid  transparent;
+}
+
+
+.product-title {
+    color: rgb(38, 12, 61) ;
+}
+
+.bdgen {
+    background-color: rgb(38, 12, 61);
+}
+
+.modal-box {
+    box-shadow: 0 0 100 rgba(0, 0, 0, 0.345) !important;
+}
